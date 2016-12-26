@@ -5,7 +5,7 @@
   
   weatherApp.controller('weatherController', ['$scope', 'weatherFactory', function($scope, weatherFactory){
   	
-  	var day = 1;
+  	var day = 2;
   	$scope.degree = "c";
   	$scope.weather = {};
 
