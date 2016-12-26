@@ -1,0 +1,90 @@
+<html><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+  <title>AngularJs Weather Forecast App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-resource.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/factory.js"></script>
+  <script type="text/javascript" src="js/directive.js"></script>
+
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body ng-app="weatherApp" class="ng-scope">
+  <div class="panel panel-default" ng-controller="weatherController">
+    <div class="panel-heading">
+      AngularJs Weather Forecast App
+    </div>
+    <div class="panel-body">
+      <!-- uiView:  -->
+      <div class="ng-scope">
+        <div class="row ng-scope">
+          <div class="col-md-6 col-md-offset-3">
+            <h4>Forecast by City</h4>
+            <div class="form-group">
+              <form name="frm" novalidate>
+                <input type="text" name="city" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-model="weather.city" ng-change="weatherResult = null" placeholder="Please, type city name..." required>
+                <div ng-show='frm.city.$touched && frm.city.$error.required'>Please, enter city name!!</div>
+                <input type="button" class="btn btn-primary" value="Get Forecast" ng-click="getForecast()" style="margin-top: 10px;" />
+                <input type="reset" class="btn btn-primary" value="Resert" style="margin-top: 10px;" />
+              </form>
+            </div>
+            <!-- <a ng-click="getForecast()" class="btn btn-primary">Get Forecast</a>
+            <a ng-click="reset()" class="btn">Reset</a> -->
+          </div>
+        </div>
+
+      <div class="row ng-scope">
+        <div class="col-md-6 col-md-offset-3">
+        <h2 class="ng-binding">Forecast for : {{ weather.city }}</h2>
+        <hr>
+
+          Days: 
+          <a ng-click="updateDay(2)" ng-class="{'bg-primary': days==2}" class="">2</a> |
+          <a ng-click="updateDay(5)" ng-class="{'bg-primary': days==5}" class="bg-primary">5</a> |
+          <a ng-click="updateDay(7)" ng-class="{'bg-primary': days==7}" class="">7</a>
+
+          Degree: 
+          <select ng-model="degree" ng-change="getForecast()" class="ng-valid ng-not-empty ng-touched ng-dirty ng-valid-parse">
+            <option value="f" selected>F</option>
+            <option value="c">C</option>
+          </select>
+        <hr>
+
+        <div ng-repeat="w in weatherResult.list">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- <div class="panel panel-default ng-isolate-scope" weather-day="w" degree="f">
+                <div class="panel-heading">
+                  <h3 class="panel-title ng-binding"> 2016 May 21</h3>
+                </div>
+                <div class="panel-body ng-binding">
+                  Daytime temperature: {{w.temp.day}} F
+                </div>
+              </div> -->
+              <weather-report></weather-report>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>
